@@ -1,0 +1,3 @@
+/home/puppecorellaerapiubello/Documents/projects/Second-order-Kuramoto/build/CMakeFiles/engine_one.dir
+/home/puppecorellaerapiubello/Documents/projects/Second-order-Kuramoto/build/CMakeFiles/edit_cache.dir
+/home/puppecorellaerapiubello/Documents/projects/Second-order-Kuramoto/build/CMakeFiles/rebuild_cache.dir
