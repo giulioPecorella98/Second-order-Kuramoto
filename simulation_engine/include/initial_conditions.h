@@ -3,9 +3,13 @@
 #include <cmath>
 #include <iostream>
 using Frequency = std::vector<double>;
-using Density = std::vector<std::vector<Frequency>>;
+using Density = std::vector<std::vector<std::vector<double>>>; 
+// 3D vector: theta x omega x frequency
 
-void initialConditions(Density& f, Frequency& g, 
-                       int thetaPoints, double dTheta, 
-                       int omegaPoints, double dOmega, double minimumOmega, double maximumOmega,
-                       int frequencyPoints, double dFrequency, double minimumFrequency, double maximumFrequency);
+void initialConditions(
+    Density& f, Frequency& g, 
+    int thetaPoints, double dTheta, 
+    int omegaPoints, double dOmega, 
+    double minimumOmega, double maximumOmega,
+    int frequencyPoints, double dFrequency, 
+    double minimumFrequency, double maximumFrequency);

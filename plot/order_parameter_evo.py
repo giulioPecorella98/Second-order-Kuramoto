@@ -1,14 +1,15 @@
-import numpy as np
-import struct
-import matplotlib.pyplot as plt
-from pathlib import Path
 import os
+import struct
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 
+def order_parameter_evolution():
 
-def orderParameterEvolution():
-
-    simulation =  input("Which simulation do you wish to load? (type 's' to see available simulations, 'q' to quit to main menu) ")
+    simulation = input("Which simulation do you wish to load? (type 's' to " \
+                       "see available simulations, 'q' to quit to main menu) ")
     path = Path("save/order_parameter")
     path.mkdir(parents=True, exist_ok=True)
     while simulation == 's':
@@ -17,20 +18,21 @@ def orderParameterEvolution():
     if simulation == 'q':
             return
     
-    continueAnalysis = True
-    while continueAnalysis:
+    continue_analysis = True
+    while continue_analysis:
         try:
             with open(path / simulation, "rb") as file:            
                 KPoints = struct.unpack('i', file.read(4))[0]
                 Kmax = struct.unpack('d', file.read(8))[0]
                 K = np.linspace(0, Kmax, KPoints)
-                r = np.fromfile(file, dtype = np.float64, count = KPoints)
+                r = np.fromfile(file, dtype=np.float64, count=KPoints)
                 minimumFrequency = struct.unpack('d', file.read(8))[0]
                 maximumFrequency = struct.unpack('d', file.read(8))[0]
-                g = np.fromfile(file, dtype = np.float64, count = -1)
-                continueAnalysis = False
+                g = np.fromfile(file, dtype=np.float64, count=-1)
+                continue_analysis = False
         except Exception as e:
-            print(f"An error occurred while reading the file: {e}. Returning to the main menu...")
+            print(f"An error occurred while reading the file: {e}. " \
+                   "Returning to the main menu...")
             return  
 
     print("Plotting the order parameter evolution...")
@@ -41,7 +43,7 @@ def orderParameterEvolution():
     plt.ylim(0, 1.1)
     plt.xlabel(r"$K$")
     plt.ylabel(r"$r(K)$")
-    plt.show(block = False)
+    plt.show(block=False)
 
     if len(g) > 1:
         print("Plotting the natural frequency distribution...")
@@ -53,7 +55,7 @@ def orderParameterEvolution():
         plt.ylabel(r"$g(\Omega)$")
         plt.xlim(minimumFrequency, maximumFrequency)
         plt.ylim(0, np.max(g) * 1.1)
-        plt.show(block = False)
+        plt.show(block=False)
 
     input("Press Enter to close the plot...")
     plt.close('all')
