@@ -66,7 +66,7 @@ Parameters loadParameters() {
     }
     std::cout << "6) The numerical scheme needs to truncate the frequency "
                  "in an interval symmetric around zero. Enter the maximum "
-                 "frequency: " << std::endl;
+                 "frequency: ";
     double maximumOmega;
     std::cin >> maximumOmega;
     while (std::cin.fail()) {
